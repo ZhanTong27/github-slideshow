@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>正在加载 Career OS V5.7</title>
+  <style>
+    html,body{margin:0;min-height:100%;background:#050a11;color:#eef7f8;font-family:Inter,"PingFang SC","Microsoft YaHei",sans-serif}
+    main{min-height:100vh;display:grid;place-items:center;padding:24px;text-align:center}
+    .box{max-width:560px;border:1px solid #244252;border-radius:16px;padding:28px;background:#0b1722}
+    h1{margin:0 0 12px;font-size:24px}p{color:#8ca1ab;line-height:1.7}.error{color:#ffb6bf}
+  </style>
+</head>
+<body>
+<main id="loader"><div class="box"><h1>Career OS V5.7</h1><p>正在读取最新版本……</p></div></main>
+<script>
+(async function(){
+  const source='https://raw.githubusercontent.com/ZhanTong27/ML/main/career-roadmap/index.html?career_os_v57='+Date.now();
+  try{
+    const response=await fetch(source,{cache:'no-store'});
+    if(!response.ok)throw new Error('HTTP '+response.status);
+    const html=await response.text();
+    if(!html.includes('CAREER_OS_V57')||!html.includes('2026-07-16-ms7q'))throw new Error('获取到的不是 Career OS V5.7 完整版本');
+    document.open();
+    document.write(html);
+    document.close();
+  }catch(error){
+    document.getElementById('loader').innerHTML='<div class="box"><h1>Career OS 暂时无法加载</h1><p class="error">'+String(error.message||error)+'</p><p>请刷新页面重试。</p></div>';
+  }
+})();
+</script>
+</body>
+</html>
